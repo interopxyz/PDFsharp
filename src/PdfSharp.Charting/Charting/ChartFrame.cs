@@ -62,7 +62,12 @@ namespace PdfSharp.Charting
             set { _location = value; }
         }
         XPoint _location;
-
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        public XBrush Background = XBrushes.Transparent;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        public XPen Outline = XPens.Transparent;
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         /// <summary>
         /// Gets or sets the size of the ChartFrame.
         /// </summary>
@@ -89,19 +94,10 @@ namespace PdfSharp.Charting
         public void Draw(XGraphics gfx)
         {
             // Draw frame of ChartFrame. First shadow frame.
-            const int dx = 5;
-            const int dy = 5;
-            gfx.DrawRoundedRectangle(XBrushes.Gainsboro,
-                                     _location.X + dx, _location.Y + dy,
-                                     _size.Width, _size.Height, 20, 20);
 
             XRect chartRect = new XRect(_location.X, _location.Y, _size.Width, _size.Height);
-            XLinearGradientBrush brush = new XLinearGradientBrush(chartRect, XColor.FromArgb(0xFFD0DEEF), XColors.White,
-                                                                  XLinearGradientMode.Vertical);
-            XPen penBorder = new XPen(XColors.SteelBlue, 2.5);
-            gfx.DrawRoundedRectangle(penBorder, brush,
-                                     _location.X, _location.Y, _size.Width, _size.Height,
-                                     15, 15);
+
+            gfx.DrawRectangle(Outline, Background, _location.X, _location.Y, _size.Width, _size.Height);
 
             XGraphicsState state = gfx.Save();
             gfx.TranslateTransform(_location.X, _location.Y);

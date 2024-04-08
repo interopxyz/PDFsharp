@@ -112,12 +112,13 @@ namespace PdfSharp.Charting.Renderers
             // Draw text
             if (leri.EntryText.Length > 0)
             {
+                Font fnt = leri._legendRendererInfo._legend.Font;
                 rect = leri.Rect;
                 rect.X += leri.MarkerArea.Width + LegendEntryRenderer.SpacingBetweenMarkerAndText;
                 XStringFormat format = new XStringFormat();
                 format.LineAlignment = XLineAlignment.Near;
-                gfx.DrawString(leri.EntryText, leri._legendRendererInfo.Font,
-                               leri._legendRendererInfo.FontColor, rect, format);
+                gfx.DrawString(leri.EntryText,new XFont(fnt.Name,fnt.Size,XFontStyle.Regular,XPdfFontOptions.UnicodeDefault),
+                               new XSolidBrush(leri._legendRendererInfo._legend.Font.Color), rect, format);
             }
         }
 

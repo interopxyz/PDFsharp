@@ -66,7 +66,7 @@ namespace PdfSharp.Charting.Renderers
                     if (sri._dataLabelRendererInfo.Type != DataLabelType.None)
                     {
                         if (sri._dataLabelRendererInfo.Type == DataLabelType.Value)
-                            dleri.Text = column.Point._value.ToString(sri._dataLabelRendererInfo.Format);
+                            dleri.Text = Math.Round(column.Point._value,3).ToString(sri._dataLabelRendererInfo.Format);
                         else if (sri._dataLabelRendererInfo.Type == DataLabelType.Percent)
                             throw new InvalidOperationException(PSCSR.PercentNotSupportedByColumnDataLabel);
 

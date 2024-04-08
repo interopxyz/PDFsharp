@@ -109,7 +109,8 @@ namespace PdfSharp.Charting.Renderers
                 }
             }
 
-            // Draw borders around column.
+            // Draw borders a
+            // column.
             // A border can overlap neighbor columns, so it is important to draw borders at the end.
             foreach (SeriesRendererInfo sri in cri.seriesRendererInfos)
             {
